@@ -1,1 +1,43 @@
 /* CSS Styles */
+body{
+    background-color: grey;
+    color: aquamarine;
+    font-family: sans-serif;
+}
+#container{
+    display: grid;
+    width: 400px;
+    height: 600px;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(5, 16.67%);
+    text-align: center;
+    
+}
+
+.button{
+    font-size: 25pt;
+    border: solid 1px;
+
+
+
+}
+
+#display {
+    grid-column-start: 1;
+    grid-column-end: 5;
+  }
+
+  #AC {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  #divide {
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+
+  #zero {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
