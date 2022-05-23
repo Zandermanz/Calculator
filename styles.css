@@ -1,7 +1,6 @@
-/* CSS Styles */
 body{
-    background-color: grey;
-    color: aquamarine;
+    background-color: black;
+    color: whitesmoke;
     font-family: sans-serif;
 }
 #container{
@@ -10,34 +9,34 @@ body{
     height: 600px;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(5, 16.67%);
-    text-align: center;
-    
+    text-align: center; 
+    align-items: center;  
 }
 
 .button{
     font-size: 25pt;
     border: solid 1px;
-
-
-
+    padding: 15px;
+    margin: 7.5px;   
 }
 
 #display {
     grid-column-start: 1;
     grid-column-end: 5;
+    font-size: 30pt;
   }
 
-  #AC {
+#AC {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 3;
   }
 
-  #divide {
+#divide {
     grid-column-start: 4;
     grid-column-end: 5;
   }
 
-  #zero {
+#zero {
     grid-column-start: 1;
     grid-column-end: 3;
   }
