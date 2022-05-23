@@ -3,10 +3,17 @@ body{
     color: whitesmoke;
     font-family: sans-serif;
 }
+
 #container{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#calculator{
     display: grid;
-    width: 400px;
-    height: 600px;
+    width: 350px;
+    height: 500px;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(5, 16.67%);
     text-align: center; 
@@ -16,7 +23,7 @@ body{
 .button{
     font-size: 25pt;
     border: solid 1px;
-    padding: 15px;
+    padding: 17px 15px;
     margin: 7.5px;   
 }
 
