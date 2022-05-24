@@ -31,6 +31,7 @@ body{
     grid-column-start: 1;
     grid-column-end: 5;
     font-size: 30pt;
+    text-align: end;
   }
 
 #AC {
