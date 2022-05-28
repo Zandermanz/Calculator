@@ -17,7 +17,7 @@ let buttonVariableName = ["displayButton", "ACButton", "divide", "seven", "eight
 //iterate over the divs to assign variable name and then variable value
 for(i=0; i<=buttonList.length; i++){
     //assigns each div a property value from array
-    buttonList[i].divListValues = divListValues[i];
+    //buttonList[i].divListValues = divListValues[i];
     //buttonVariableName[i].addEventListener("click", () => pressButton(divListValues[i]))
 }
 
@@ -38,4 +38,20 @@ function setDisplay(value){
 function pressButton(button){
     display.textContent = button;
     console.log(button);
+}
+
+function add(x, y) {
+    return x + y;
+}
+
+function subtract(x, y) {
+    return x - y;
+}
+
+function multiply(x, y) {
+    return x * y;
+}
+
+function divide(x, y) {
+    return x / y;
 }
