@@ -6,15 +6,15 @@ let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
 
 
-//list of all divs
+//list of all div elements
 let buttonList = document.querySelectorAll('div.button');
-//list of values to assign to divs
+//list of values to assign to div elements
 let divListValues = ["Display", "AC", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", 0, ".", "="]
-//variable names to assign to each iteration over the divs
+//variable names to assign to each iteration over the div elements
 let buttonVariableName = ["displayButton", "ACButton", "divide", "seven", "eight", "nine", "multiply", 
                           "four", "five", "six", "subtract", "one", "two", "three", "addition", 
                           "zero", "point", "equals"]
-//iterate over the divs to assign variable name and then variable value
+//iterate over the div to assign variable name and then variable value
 for(i=0; i<=buttonList.length; i++){
     //assigns each div a property value from array
     //buttonList[i].divListValues = divListValues[i];
@@ -40,6 +40,7 @@ function pressButton(button){
     console.log(button);
 }
 
+//arithmetic functions
 function add(x, y) {
     return x + y;
 }
