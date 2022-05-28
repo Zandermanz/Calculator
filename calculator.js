@@ -1,43 +1,81 @@
 
 //Sets variable to display in display box
 let display = document.getElementById('display');
+let displayValue = 0;
 
 let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
 
+let zero = document.getElementById('zero');
+zero.addEventListener("click", () => pressButton(0));
 
-//list of all div elements
-let buttonList = document.querySelectorAll('div.button');
-//list of values to assign to div elements
-let divListValues = ["Display", "AC", "/", 7, 8, 9, "*", 4, 5, 6, "-", 1, 2, 3, "+", 0, ".", "="]
-//variable names to assign to each iteration over the div elements
-let buttonVariableName = ["displayButton", "ACButton", "divide", "seven", "eight", "nine", "multiply", 
-                          "four", "five", "six", "subtract", "one", "two", "three", "addition", 
-                          "zero", "point", "equals"]
-//iterate over the div to assign variable name and then variable value
-for(i=0; i<=buttonList.length; i++){
-    //assigns each div a property value from array
-    //buttonList[i].divListValues = divListValues[i];
-    //buttonVariableName[i].addEventListener("click", () => pressButton(divListValues[i]))
-}
+let one = document.getElementById('one');
+one.addEventListener("click", () => pressButton(1));
 
-//let one = document.getElementById('one');
-//one.addEventListener("click", () => pressButton(1));
+let two = document.getElementById('two');
+two.addEventListener("click", () => pressButton(2));
+
+let three = document.getElementById('three');
+three.addEventListener("click", () => pressButton(3));
+
+let four = document.getElementById('four');
+four.addEventListener("click", () => pressButton(4));
+
+let five = document.getElementById('five');
+five.addEventListener("click", () => pressButton(5));
+
+let six = document.getElementById('six');
+six.addEventListener("click", () => pressButton(6));
+
+let seven = document.getElementById('seven');
+seven.addEventListener("click", () => pressButton(7));
+
+let eight = document.getElementById('eight');
+eight.addEventListener("click", () => pressButton(8));
+
+let nine = document.getElementById('nine');
+nine.addEventListener("click", () => pressButton(9));
+
+let divideButton = document.getElementById('divide');
+divideButton.addEventListener("click", () => pressButton("/"));
+
+let multiplyButton = document.getElementById('multiply');
+multiplyButton.addEventListener("click", () => pressButton("*"));
+
+let subtractButton = document.getElementById('subtract');
+subtractButton.addEventListener("click", () => pressButton("-"));
+
+let addButton = document.getElementById('add');
+addButton.addEventListener("click", () => pressButton("+"));
+
+let equalsButton = document.getElementById('equals');
+equalsButton.addEventListener("click", () => equals);
+
+let point = document.getElementById('point');
+point.addEventListener("click", () => pressButton("."))
 
 //Wipes Display
 function allClear(){
-    //wipes display to 0
-    display.textContent = 0;
+    //wipes display
+    displayValue = 0;
+    setDisplay(displayValue);
 }
 
-//Sets Display
-function setDisplay(value){
-    display.textContent = value;
-}
-
+//takes input and adds it to displayValue
 function pressButton(button){
-    display.textContent = button;
-    console.log(button);
+    displayValue += button;
+    setDisplay(displayValue);
+    //console.log(button);
+}
+
+//Sets Display after a button is pressed
+function setDisplay(displayValue){
+    display.textContent = displayValue;
+}
+
+//idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
+function equals(){
+
 }
 
 //arithmetic functions
