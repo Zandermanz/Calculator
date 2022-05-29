@@ -7,34 +7,34 @@ let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
 
 let zero = document.getElementById('zero');
-zero.addEventListener("click", () => pressButton(0));
+zero.addEventListener("click", () => pressButton("0"));
 
 let one = document.getElementById('one');
-one.addEventListener("click", () => pressButton(1));
+one.addEventListener("click", () => pressButton("1"));
 
 let two = document.getElementById('two');
-two.addEventListener("click", () => pressButton(2));
+two.addEventListener("click", () => pressButton("2"));
 
 let three = document.getElementById('three');
-three.addEventListener("click", () => pressButton(3));
+three.addEventListener("click", () => pressButton("3"));
 
 let four = document.getElementById('four');
-four.addEventListener("click", () => pressButton(4));
+four.addEventListener("click", () => pressButton("4"));
 
 let five = document.getElementById('five');
-five.addEventListener("click", () => pressButton(5));
+five.addEventListener("click", () => pressButton("5"));
 
 let six = document.getElementById('six');
-six.addEventListener("click", () => pressButton(6));
+six.addEventListener("click", () => pressButton("6"));
 
 let seven = document.getElementById('seven');
-seven.addEventListener("click", () => pressButton(7));
+seven.addEventListener("click", () => pressButton("7"));
 
 let eight = document.getElementById('eight');
-eight.addEventListener("click", () => pressButton(8));
+eight.addEventListener("click", () => pressButton("8"));
 
 let nine = document.getElementById('nine');
-nine.addEventListener("click", () => pressButton(9));
+nine.addEventListener("click", () => pressButton("9"));
 
 let divideButton = document.getElementById('divide');
 divideButton.addEventListener("click", () => pressButton("/"));
@@ -49,20 +49,27 @@ let addButton = document.getElementById('add');
 addButton.addEventListener("click", () => pressButton("+"));
 
 let equalsButton = document.getElementById('equals');
-equalsButton.addEventListener("click", () => equals);
+equalsButton.addEventListener("click", () => equals(displayValue));
 
 let point = document.getElementById('point');
 point.addEventListener("click", () => pressButton("."))
 
 //Wipes Display
 function allClear(){
-    //wipes display
-    displayValue = 0;
+    //zero's displayValue
+    clearStoredValue();
+    //sets display to now zero'd displayValue
     setDisplay(displayValue);
+}
+
+//clears the stored value
+function clearStoredValue() {
+    displayValue = "";
 }
 
 //takes input and adds it to displayValue
 function pressButton(button){
+    //as all buttons are strings, concatenates string values
     displayValue += button;
     setDisplay(displayValue);
     //console.log(button);
@@ -74,7 +81,9 @@ function setDisplay(displayValue){
 }
 
 //idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
-function equals(){
+function equals(displayValue){
+   //returns nan- needs rework
+    setDisplay(Number(displayValue));
 
 }
 
@@ -95,7 +104,7 @@ function divide(x, y) {
     return x / y;
 }
 
-//takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+//an takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(operator, x, y) {
     return operator(x, y);
 }
