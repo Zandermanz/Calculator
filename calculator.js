@@ -7,34 +7,34 @@ let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
 
 let zero = document.getElementById('zero');
-zero.addEventListener("click", () => pressButton("0"));
+zero.addEventListener("click", () => pressButton(0));
 
 let one = document.getElementById('one');
-one.addEventListener("click", () => pressButton("1"));
+one.addEventListener("click", () => pressButton(1));
 
 let two = document.getElementById('two');
-two.addEventListener("click", () => pressButton("2"));
+two.addEventListener("click", () => pressButton(2));
 
 let three = document.getElementById('three');
-three.addEventListener("click", () => pressButton("3"));
+three.addEventListener("click", () => pressButton(3));
 
 let four = document.getElementById('four');
-four.addEventListener("click", () => pressButton("4"));
+four.addEventListener("click", () => pressButton(4));
 
 let five = document.getElementById('five');
-five.addEventListener("click", () => pressButton("5"));
+five.addEventListener("click", () => pressButton(5));
 
 let six = document.getElementById('six');
-six.addEventListener("click", () => pressButton("6"));
+six.addEventListener("click", () => pressButton(6));
 
 let seven = document.getElementById('seven');
-seven.addEventListener("click", () => pressButton("7"));
+seven.addEventListener("click", () => pressButton(7));
 
 let eight = document.getElementById('eight');
-eight.addEventListener("click", () => pressButton("8"));
+eight.addEventListener("click", () => pressButton(8));
 
 let nine = document.getElementById('nine');
-nine.addEventListener("click", () => pressButton("9"));
+nine.addEventListener("click", () => pressButton(9));
 
 let divideButton = document.getElementById('divide');
 divideButton.addEventListener("click", () => pressButton("/"));
@@ -54,6 +54,29 @@ equalsButton.addEventListener("click", () => equals(displayValue));
 let point = document.getElementById('point');
 point.addEventListener("click", () => pressButton("."))
 
+//takes input and adds it to displayValue
+function pressButton(button){
+    //need to develop the rest ot this logic to sort
+    if(isNumber(button)){
+        // if button is a number code here
+        //for the first number just sets it as the button value
+        if (displayValue == 0){ //if for when display is empty
+            displayValue = button;
+            setDisplay(button);
+        } else{ //loop for when display already has a digit
+            displayValue = displayValue * 10 + button; //add the number*10 to the previous number, making base 10 explicit, 
+                                                       //we just don't think about it
+            setDisplay(displayValue);
+        }
+
+    } else if (isSymbol(button)){
+        //if button pressed is a symbol
+        //store existing Number, store the operator
+    }
+
+
+    //console.log(button);
+}
 //Wipes Display
 function allClear(){
     //zero's displayValue
@@ -64,16 +87,9 @@ function allClear(){
 
 //clears the stored value
 function clearStoredValue() {
-    displayValue = "";
+    displayValue = 0;
 }
 
-//takes input and adds it to displayValue
-function pressButton(button){
-    //as all buttons are strings, concatenates string values
-    displayValue += button;
-    setDisplay(displayValue);
-    //console.log(button);
-}
 
 //Sets Display after a button is pressed
 function setDisplay(displayValue){
@@ -108,11 +124,18 @@ function operate(operator, x, y) {
     return operator(x, y);
 }
 
-//function to detect if input is a symbol
+//function to detect if input is one of four symbols
 function isSymbol(symbol){
     if (symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/"  ){
         return true;
     } else return false;
+}
+
+//check the type and returns true if passed a number
+function isNumber(num) {
+ if (typeof num == "number"){
+     return true
+ } else return false
 }
 
 //idea put numbers back to number type when symbol button is pressed, store the first number, record the symbol, and make new variable for next number. 
