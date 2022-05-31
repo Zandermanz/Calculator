@@ -22,7 +22,7 @@ body{
 
 .button{
     font-size: 25pt;
-    border: solid 1px;
+    border: solid blue 1px;
     padding: 17px 15px;
     margin: 7.5px;   
 }
@@ -32,7 +32,10 @@ body{
     grid-column-end: 5;
     font-size: 30pt;
     text-align: end;
+    height: 34px;
+    background-color: #02022f;
   }
+
 
 #AC {
     grid-column-start: 1;
