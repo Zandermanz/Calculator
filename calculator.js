@@ -80,11 +80,10 @@ function setDisplay(displayValue){
     display.textContent = displayValue;
 }
 
-//idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
 function equals(displayValue){
-   //returns nan- needs rework
-    setDisplay(Number(displayValue));
-
+    //idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
+    //may come back to this one, but this is the function for thee equal sign
+    setDisplay();
 }
 
 //arithmetic functions
@@ -108,3 +107,14 @@ function divide(x, y) {
 function operate(operator, x, y) {
     return operator(x, y);
 }
+
+//function to detect if input is a symbol
+function isSymbol(symbol){
+    if (symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/"  ){
+        return true;
+    } else return false;
+}
+
+//idea put numbers back to number type when symbol button is pressed, store the first number, record the symbol, and make new variable for next number. 
+// this way it keeps the values separate from the operators. Use isSymbol to test on input to determine when to store first number
+
