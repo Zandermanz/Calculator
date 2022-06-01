@@ -3,7 +3,7 @@
 let display = document.getElementById('display');
 let displayValue = 0; //global scope display number
 let storedNumber = 0; //global scope storedNumber to hold first number in a calc;
-let storedOperator =""; //global scope stored operator to hold operator until second number is entered.
+let storedOperator = ""; //global scope stored operator to hold operator until second number is entered.
 let afterDecimal = false; //global scope toggle for decimal switch.
 
 let ACButton = document.getElementById('AC');
@@ -60,27 +60,32 @@ point.addEventListener("click", () => pressButton("."))
 //takes input and adds it to displayValue
 function pressButton(button){
     //need to develop the rest ot this logic to sort
-    if(isNumber(button)){
-        // if button is a number code here
+    if(isNumber(button)){ // if button is a number code here
         //for the first number just sets it as the button value
-        if (displayValue == 0){ //if for when display is empty
+        if (displayValue == 0 && afterDecimal == false){ 
+            //if for when display is empty and decimal is not clicked
             displayValue = button;
-            setDisplay(button);
-        } else if (afterDecimal = true) { //loop if decimal is clicked
+        } else if (displayValue == 0 && afterDecimal == true) { 
+            // if nothing is entered, but the decimal is clicked
+            displayValue = button / 10;
+        } else if (afterDecimal == true) { 
+            //loop if decimal is clicked
             displayValue = displayValue + (button / 10)
-            setDisplay(displayValue);
+           
+            // **** needs work for multiple digits after the decimal. currently just adds an sub integer amounts
+
         } else{ //loop for when display already has a digit
             displayValue = displayValue * 10 + button; 
             //add the number*10 to the previous number, making the way base 10 numbers work explicit.
-            setDisplay(displayValue);
         }
+    setDisplay(displayValue); //sets display based on displayValue determined in above logical statements
 
     } else if (isSymbol(button)){
         //if button pressed is a symbol
         //store existing Number, store the operator, if 
         storedNumber = displayValue; //stores the display value
         displayValue = 0; //resets the displayValue to zero to allow new input
-        setDisplay(); //Clears the screen
+        setDisplay(button); //displays the operator
         //store operator, which is just the button in this function- which is a string value
         storedOperator = button;
 
@@ -109,9 +114,8 @@ function setDisplay(displayValue){
     display.textContent = displayValue;
 }
 
-function equals(displayValue){
-    //idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
-    //may come back to this one, but this is the function for thee equal sign
+function equals(){
+    //function for thee equal sign. takes the display, identifies the function to use
     secondNumber = displayValue;
 
     switch (storedOperator) { //switch case, calls appropriate function depending on the operator clicked
@@ -131,7 +135,7 @@ function equals(displayValue){
             break;
             }
     setDisplay(displayValue);
-    return displayValue;
+    afterDecimal = false;
 }
 
 //Takes an operator and 2 numbers and then calls one of the arithmetic functions on the numbers.
