@@ -1,7 +1,9 @@
 
 //Sets variable to display in display box
 let display = document.getElementById('display');
-let displayValue = 0;
+let displayValue = 0; //global scope display number
+let storedNumber = 0; //global scope storedNumber to hold first number in a calc;
+let storedOperator =""; //global scope stored operator to hold operator until second number is entered.
 
 let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
@@ -71,12 +73,16 @@ function pressButton(button){
 
     } else if (isSymbol(button)){
         //if button pressed is a symbol
-        //store existing Number, store the operator
+        //store existing Number, store the operator, if 
+        storedNumber = displayValue; //stores the display value
+        displayValue = 0; //resets the displayValue to zero to allow new input
+        setDisplay(); //Clears the screen
+
+        //store operator, which is just the button in this function- which is a string value
+        storedOperator = button;
     }
-
-
-    //console.log(button);
 }
+
 //Wipes Display
 function allClear(){
     //zero's displayValue
@@ -88,6 +94,7 @@ function allClear(){
 //clears the stored value
 function clearStoredValue() {
     displayValue = 0;
+    storedNumber = 0;
 }
 
 
@@ -99,6 +106,33 @@ function setDisplay(displayValue){
 function equals(displayValue){
     //idea, when equals is hit, takes the display, identifies the function to use in what I think would be a string
     //may come back to this one, but this is the function for thee equal sign
+    secondNumber = displayValue;
+
+    switch (storedOperator) {
+        case "+":
+            displayValue = operate(add, storedNumber, secondNumber);
+            setDisplay(displayValue);
+            return displayValue;
+            break;
+        case "-":
+            displayValue = operate(subtract, storedNumber, secondNumber);
+            setDisplay(displayValue);
+            return displayValue;
+            break;
+        case "*":
+            displayValue = operate(multiply, storedNumber, secondNumber);
+            setDisplay(displayValue);
+            return displayValue;
+            break;
+        case "/":
+            displayValue = operate(divide, storedNumber, secondNumber);
+            setDisplay(displayValue);
+            return displayValue;
+            break;
+        default:
+            break;
+    }
+
     setDisplay();
 }
 
