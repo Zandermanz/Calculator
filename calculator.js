@@ -132,7 +132,6 @@ function equals(displayValue){
             }
     setDisplay(displayValue);
     return displayValue;
-    setDisplay();
 }
 
 //Takes an operator and 2 numbers and then calls one of the arithmetic functions on the numbers.
