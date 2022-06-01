@@ -70,8 +70,8 @@ function pressButton(button){
             displayValue = displayValue + (button / 10)
             setDisplay(displayValue);
         } else{ //loop for when display already has a digit
-            displayValue = displayValue * 10 + button; //add the number*10 to the previous number, making base 10 explicit, 
-                                                       //we just don't think about it
+            displayValue = displayValue * 10 + button; 
+            //add the number*10 to the previous number, making the way base 10 numbers work explicit.
             setDisplay(displayValue);
         }
 
@@ -83,10 +83,9 @@ function pressButton(button){
         setDisplay(); //Clears the screen
         //store operator, which is just the button in this function- which is a string value
         storedOperator = button;
+
     } else if (button === "."){
-        //logic if . button is pressed
-        //idea have a toggle state, and if . is set to active, then next number added gets a different logig
-        //i.e. /10 and added.
+        //If . button is pressed toggles state, and if . is set to active, then next number is divided by 10 and added.
         afterDecimal = true;
     }
 }
@@ -104,7 +103,6 @@ function clearStoredValue() {
     displayValue = 0;
     storedNumber = 0;
 }
-
 
 //Sets Display after a button is pressed
 function setDisplay(displayValue){
@@ -137,27 +135,17 @@ function equals(displayValue){
     setDisplay();
 }
 
-//arithmetic functions
-function add(x, y) {
-    return x + y;
-}
-
-function subtract(x, y) {
-    return x - y;
-}
-
-function multiply(x, y) {
-    return x * y;
-}
-
-function divide(x, y) {
-    return x / y;
-}
-
-//an takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+//Takes an operator and 2 numbers and then calls one of the arithmetic functions on the numbers.
 function operate(operator, x, y) {
     return operator(x, y);
 }
+
+//arithmetic functions
+function add(x, y) {return x + y;}
+function subtract(x, y) {return x - y;}
+function multiply(x, y) {return x * y;}
+function divide(x, y) {return x / y;}
+
 
 //function to detect if input is one of four symbols
 function isSymbol(symbol){
