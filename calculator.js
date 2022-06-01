@@ -4,6 +4,7 @@ let display = document.getElementById('display');
 let displayValue = 0; //global scope display number
 let storedNumber = 0; //global scope storedNumber to hold first number in a calc;
 let storedOperator =""; //global scope stored operator to hold operator until second number is entered.
+let afterDecimal = false; //global scope toggle for decimal switch.
 
 let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
@@ -65,6 +66,9 @@ function pressButton(button){
         if (displayValue == 0){ //if for when display is empty
             displayValue = button;
             setDisplay(button);
+        } else if (afterDecimal = true) { //loop if decimal is clicked
+            displayValue = displayValue + (button / 10)
+            setDisplay(displayValue);
         } else{ //loop for when display already has a digit
             displayValue = displayValue * 10 + button; //add the number*10 to the previous number, making base 10 explicit, 
                                                        //we just don't think about it
@@ -77,9 +81,13 @@ function pressButton(button){
         storedNumber = displayValue; //stores the display value
         displayValue = 0; //resets the displayValue to zero to allow new input
         setDisplay(); //Clears the screen
-
         //store operator, which is just the button in this function- which is a string value
         storedOperator = button;
+    } else if (button === "."){
+        //logic if . button is pressed
+        //idea have a toggle state, and if . is set to active, then next number added gets a different logig
+        //i.e. /10 and added.
+        afterDecimal = true;
     }
 }
 
@@ -132,7 +140,6 @@ function equals(displayValue){
         default:
             break;
     }
-
     setDisplay();
 }
 
@@ -171,7 +178,3 @@ function isNumber(num) {
      return true
  } else return false
 }
-
-//idea put numbers back to number type when symbol button is pressed, store the first number, record the symbol, and make new variable for next number. 
-// this way it keeps the values separate from the operators. Use isSymbol to test on input to determine when to store first number
-
