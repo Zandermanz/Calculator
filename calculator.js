@@ -116,30 +116,24 @@ function equals(displayValue){
     //may come back to this one, but this is the function for thee equal sign
     secondNumber = displayValue;
 
-    switch (storedOperator) {
+    switch (storedOperator) { //switch case, calls appropriate function depending on the operator clicked
         case "+":
             displayValue = operate(add, storedNumber, secondNumber);
-            setDisplay(displayValue);
-            return displayValue;
             break;
         case "-":
             displayValue = operate(subtract, storedNumber, secondNumber);
-            setDisplay(displayValue);
-            return displayValue;
             break;
         case "*":
             displayValue = operate(multiply, storedNumber, secondNumber);
-            setDisplay(displayValue);
-            return displayValue;
             break;
         case "/":
             displayValue = operate(divide, storedNumber, secondNumber);
-            setDisplay(displayValue);
-            return displayValue;
             break;
         default:
             break;
-    }
+            }
+    setDisplay(displayValue);
+    return displayValue;
     setDisplay();
 }
 
