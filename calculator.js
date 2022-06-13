@@ -5,6 +5,7 @@ let displayValue = 0; //global scope display number
 let storedNumber = 0; //global scope storedNumber to hold first number in a calc;
 let storedOperator = ""; //global scope stored operator to hold operator until second number is entered.
 let afterDecimal = false; //global scope toggle for decimal switch.
+let decimalDivider = 10; //global scope setting to determine places after decimal
 
 let ACButton = document.getElementById('AC');
 ACButton.addEventListener("click", allClear);
@@ -67,12 +68,12 @@ function pressButton(button){
             displayValue = button;
         } else if (displayValue == 0 && afterDecimal == true) { 
             // if nothing is entered, but the decimal is clicked
-            displayValue = button / 10;
+            displayValue = button / decimalDivider; // divides by 10 to start with
+            decimalDivider = decimalDivider * 10; // multiplies the decimal by 10
         } else if (afterDecimal == true) { 
             //loop if decimal is clicked
-            displayValue = displayValue + (button / 10)
-           
-            // **** needs work for multiple digits after the decimal. currently just adds an sub integer amounts
+            displayValue = displayValue + (button / decimalDivider)
+            decimalDivider = decimalDivider * 10; //so that subsequent numbers add on new number at end
 
         } else{ //loop for when display already has a digit
             displayValue = displayValue * 10 + button; 
@@ -88,6 +89,7 @@ function pressButton(button){
         setDisplay(button); //displays the operator
         //store operator, which is just the button in this function- which is a string value
         storedOperator = button;
+        resetDecimalDivider();
 
     } else if (button === "."){
         //If . button is pressed toggles state, and if . is set to active, then next number is divided by 10 and added.
@@ -107,6 +109,7 @@ function allClear(){
 function clearStoredValue() {
     displayValue = 0;
     storedNumber = 0;
+    resetDecimalDivider();
 }
 
 //Sets Display after a button is pressed
@@ -136,6 +139,7 @@ function equals(){
             }
     setDisplay(displayValue);
     afterDecimal = false;
+    resetDecimalDivider();
 }
 
 //Takes an operator and 2 numbers and then calls one of the arithmetic functions on the numbers.
@@ -162,4 +166,8 @@ function isNumber(num) {
  if (typeof num == "number"){
      return true
  } else return false
+}
+
+function resetDecimalDivider() {
+    decimalDivider = 10;
 }
