@@ -69,13 +69,12 @@ function pressButton(button){
         } else if (displayValue == 0 && afterDecimal == true) { 
             // if nothing is entered, but the decimal is clicked
             displayValue = button / decimalDivider; // divides by 10 to start with
-            decimalDivider = decimalDivider * 10; // multiplies the decimal by 10
+            decimalDivider *= 10; // multiplies the decimal by 10
         } else if (afterDecimal == true) { 
-            // if decimal is clicked
+            // if decimal is clicked, but something has been entered
             displayValue = displayValue + (button / decimalDivider);
-            decimalDivider = decimalDivider * 10; //adds a zero to decimal divider so that decimal places work properly
-            //displayValue = Math.round(displayValue); DOES NOT WORK
-        } else{ //loop for when display already has a digit
+            decimalDivider *= 10; //adds a zero to decimal divider so that decimal places work properly
+        } else{ //loop for when display already has a digit, no decimals involved
             displayValue = displayValue * 10 + button; 
             //add the number*10 to the previous number, making the way base 10 numbers work explicit.
         }
@@ -133,7 +132,12 @@ function equals(){
             displayValue = operate(multiply, storedNumber, secondNumber);
             break;
         case "/":
+            if(secondNumber == 0){
+                displayValue= "Nope!";
+                break;
+            }
             displayValue = operate(divide, storedNumber, secondNumber);
+            //should put no divide by zero code here
             break;
         default:
             break;
