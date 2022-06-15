@@ -64,17 +64,17 @@ function pressButton(button){
     if(isNumber(button)){ // if button is a number code here
         //for the first number just sets it as the button value
         if (displayValue == 0 && afterDecimal == false){ 
-            //if for when display is empty and decimal is not clicked
+            //if for when display is empty or has a symbol and decimal is not clicked
             displayValue = button;
         } else if (displayValue == 0 && afterDecimal == true) { 
             // if nothing is entered, but the decimal is clicked
             displayValue = button / decimalDivider; // divides by 10 to start with
             decimalDivider = decimalDivider * 10; // multiplies the decimal by 10
         } else if (afterDecimal == true) { 
-            //loop if decimal is clicked
-            displayValue = displayValue + (button / decimalDivider)
-            decimalDivider = decimalDivider * 10; //so that subsequent numbers add on new number at end
-
+            // if decimal is clicked
+            displayValue = displayValue + (button / decimalDivider);
+            decimalDivider = decimalDivider * 10; //adds a zero to decimal divider so that decimal places work properly
+            //displayValue = Math.round(displayValue); DOES NOT WORK
         } else{ //loop for when display already has a digit
             displayValue = displayValue * 10 + button; 
             //add the number*10 to the previous number, making the way base 10 numbers work explicit.
@@ -90,6 +90,7 @@ function pressButton(button){
         //store operator, which is just the button in this function- which is a string value
         storedOperator = button;
         resetDecimalDivider();
+        afterDecimal = false;
 
     } else if (button === "."){
         //If . button is pressed toggles state, and if . is set to active, then next number is divided by 10 and added.
@@ -137,14 +138,14 @@ function equals(){
         default:
             break;
             }
-    setDisplay(displayValue);
-    afterDecimal = false;
-    resetDecimalDivider();
+    setDisplay(displayValue);  
 }
 
 //Takes an operator and 2 numbers and then calls one of the arithmetic functions on the numbers.
 function operate(operator, x, y) {
+    resetDecimalDivider();
     return operator(x, y);
+    
 }
 
 //arithmetic functions
