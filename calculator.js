@@ -69,7 +69,7 @@ function pressButton(button){
             decimalDivider *= 10; //adds a zero to decimal divider so that decimal places work properly
         } else{ //loop for when display already has a digit, no decimals involved
             displayValue = displayValue * 10 + button; 
-            //add the number*10 to the previous number, making the way base 10 numbers work explicit.
+            //add the number * 10 to the previous number, making the way base 10 numbers work explicit.
         }
     setDisplay(displayValue); //sets display based on displayValue determined in above logical statements
 
@@ -89,9 +89,9 @@ function pressButton(button){
 
 //Rounds x to 10 to the power of n places
 function rounding(x, n) {
-    //multiply by 10, round, divide by 10
     return Math.round(x*n)/n;
 }
+
 //Wipes Display
 function allClear(){
     //zero's displayValue
@@ -100,7 +100,7 @@ function allClear(){
     setDisplay(displayValue);
 }
 
-//clears the stored value
+//Clears the stored value
 function clearStoredValue() {
     displayValue = 0;
     storedNumber = 0;
@@ -113,8 +113,8 @@ function setDisplay(displayValue){
     display.textContent = displayValue;
 }
 
+//Function for thee equal sign. takes the display, identifies the function to use
 function equals(){
-    //function for thee equal sign. takes the display, identifies the function to use
     secondNumber = displayValue;
 
     switch (storedOperator) { //switch case, calls appropriate function depending on the operator clicked
@@ -128,12 +128,11 @@ function equals(){
             displayValue = operate(multiply, storedNumber, secondNumber);
             break;
         case "/":
-            if(secondNumber == 0){
+            if(secondNumber == 0){ //error message if user divides by zero
                 displayValue= "Nope!";
                 break;
             }
             displayValue = operate(divide, storedNumber, secondNumber);
-            //should put no divide by zero code here
             break;
         default:
             break;
@@ -145,30 +144,30 @@ function equals(){
 function operate(operator, x, y) {
     resetDecimalDivider();
     return operator(x, y);
-    
 }
 
-//arithmetic functions
+//Arithmetic functions
 function add(x, y) {return x + y;}
 function subtract(x, y) {return x - y;}
 function multiply(x, y) {return x * y;}
 function divide(x, y) {return x / y;}
 
 
-//function to detect if input is one of four symbols
+//Detects if input is one of four symbols
 function isSymbol(symbol){
     if (symbol === "+" || symbol === "-" || symbol === "*" || symbol === "/"  ){
         return true;
     } else return false;
 }
 
-//check the type and returns true if passed a number
+//Checks type and returns true if a number
 function isNumber(num) {
  if (typeof num == "number"){
      return true
  } else return false
 }
 
+//Sets the number used to track
 function resetDecimalDivider() {
     decimalDivider = 10;
 }
