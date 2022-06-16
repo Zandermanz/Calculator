@@ -64,14 +64,14 @@ function pressButton(button){
     if(isNumber(button)){ // if button is a number code here
         if (afterDecimal === true) { 
             // if decimal is clicked, but something has been entered
-            displayValue = displayValue + (button / decimalDivider);
-            //displayValue = rounding(displayValue, decimalDivider);
+            displayValue = rounding(displayValue + (button / decimalDivider), decimalDivider);
+            //rounds display value after each new input to prevent rounding errors
             decimalDivider *= 10; //adds a zero to decimal divider so that decimal places work properly
         } else{ //loop for when display already has a digit, no decimals involved
             displayValue = displayValue * 10 + button; 
             //add the number*10 to the previous number, making the way base 10 numbers work explicit.
         }
-    setDisplay(rounding(displayValue, decimalDivider)); //sets display based on displayValue determined in above logical statements
+    setDisplay(displayValue); //sets display based on displayValue determined in above logical statements
 
     } else if (isSymbol(button)){  //if button pressed is a symbol
         storedNumber = displayValue; //stores the display value and
