@@ -62,32 +62,22 @@ point.addEventListener("click", () => pressButton("."))
 function pressButton(button){
     //need to develop the rest ot this logic to sort
     if(isNumber(button)){ // if button is a number code here
-        //for the first number just sets it as the button value
-        if (displayValue == 0 && afterDecimal == false){ 
-            //if for when display is empty or has a symbol and decimal is not clicked
-            displayValue = button;
-        } else if (displayValue == 0 && afterDecimal == true) { 
-            // if nothing is entered, but the decimal is clicked
-            displayValue = button / decimalDivider; // divides by 10 to start with
-            decimalDivider *= 10; // multiplies the decimal by 10
-        } else if (afterDecimal == true) { 
+        if (afterDecimal === true) { 
             // if decimal is clicked, but something has been entered
             displayValue = displayValue + (button / decimalDivider);
+            //displayValue = rounding(displayValue, decimalDivider);
             decimalDivider *= 10; //adds a zero to decimal divider so that decimal places work properly
         } else{ //loop for when display already has a digit, no decimals involved
             displayValue = displayValue * 10 + button; 
             //add the number*10 to the previous number, making the way base 10 numbers work explicit.
         }
-    setDisplay(displayValue); //sets display based on displayValue determined in above logical statements
+    setDisplay(rounding(displayValue, decimalDivider)); //sets display based on displayValue determined in above logical statements
 
-    } else if (isSymbol(button)){
-        //if button pressed is a symbol
-        //store existing Number, store the operator, if 
-        storedNumber = displayValue; //stores the display value
+    } else if (isSymbol(button)){  //if button pressed is a symbol
+        storedNumber = displayValue; //stores the display value and
         displayValue = 0; //resets the displayValue to zero to allow new input
-        setDisplay(button); //displays the operator
-        //store operator, which is just the button in this function- which is a string value
-        storedOperator = button;
+        setDisplay(button); //displays the operator selected
+        storedOperator = button; //stores operator for later use
         resetDecimalDivider();
         afterDecimal = false;
 
@@ -97,6 +87,11 @@ function pressButton(button){
     }
 }
 
+//Rounds x to 10 to the power of n places
+function rounding(x, n) {
+    //multiply by 10, round, divide by 10
+    return Math.round(x*n)/n;
+}
 //Wipes Display
 function allClear(){
     //zero's displayValue
@@ -110,6 +105,7 @@ function clearStoredValue() {
     displayValue = 0;
     storedNumber = 0;
     resetDecimalDivider();
+    afterDecimal = false;
 }
 
 //Sets Display after a button is pressed
@@ -176,3 +172,4 @@ function isNumber(num) {
 function resetDecimalDivider() {
     decimalDivider = 10;
 }
+
