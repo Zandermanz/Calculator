@@ -162,7 +162,7 @@ function isSymbol(symbol){
 
 //Checks type and returns true if a number
 function isNumber(num) {
- if (typeof num == "number"){
+ if (typeof num === "number"){
      return true
  } else return false
 }
