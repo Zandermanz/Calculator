@@ -61,7 +61,7 @@ point.addEventListener("click", () => pressButton("."))
 //takes input and adds it to displayValue
 function pressButton(button){
     //need to develop the rest ot this logic to sort
-    if(isNumber(button)){ // if button is a number code here
+    if(isNumber(button)){ // if button is a number
         if (afterDecimal === true) { 
             // if decimal is clicked, but something has been entered
             displayValue = rounding(displayValue + (button / decimalDivider), decimalDivider);
@@ -82,7 +82,7 @@ function pressButton(button){
         afterDecimal = false;
 
     } else if (button === "."){
-        //If . button is pressed toggles state, and if . is set to active, then next number is divided by 10 and added.
+        //If "." button is pressed toggles state, and if "." is set to active, then next number is divided by 10 and added.
         afterDecimal = true;
     }
 }
@@ -94,13 +94,13 @@ function rounding(x, n) {
 
 //Wipes Display
 function allClear(){
-    //zero's displayValue
+    //zeroes displayValue
     clearStoredValue();
-    //sets display to now zero'd displayValue
+    //sets display to now zeroed displayValue
     setDisplay(displayValue);
 }
 
-//Clears the stored value
+//Clears the stored value, display value, and resets the decimal divider
 function clearStoredValue() {
     displayValue = 0;
     storedNumber = 0;
